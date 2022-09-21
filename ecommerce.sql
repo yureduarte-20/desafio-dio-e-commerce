@@ -61,6 +61,8 @@ CREATE TABLE IF NOT EXISTS categorias(
 
 CREATE TABLE IF NOT EXISTS produtos(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(40) NOT NULL,
+    descricao TEXT,
     categoria_id INTEGER,
     valor DOUBLE NOT NULL DEFAULT 0.1,
     FOREIGN KEY(categoria_id) REFERENCES categorias(id)
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS estoque(
 CREATE TABLE IF NOT EXISTS estoque_produto(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     produto_id INTEGER NOT NULL,
-    categoria_id INTEGER NOT NULL,
+    estoque_id INTEGER NOT NULL,
     quantidade INTEGER DEFAULT 0
 );
 
@@ -105,7 +107,7 @@ CREATE TABLE IF NOT EXISTS fornecedor_produto(
 #pedidos 
 CREATE TABLE IF NOT EXISTS pedidos_status(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(30) NOT NULL,
+    nome VARCHAR(45) NOT NULL,
     descricao text
 );
 
@@ -119,7 +121,8 @@ CREATE TABLE IF NOT EXISTS pedidos(
 CREATE TABLE IF NOT EXISTS pedidos_produtos(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     pedido_id INTEGER NOT NULL,
-    produto_id INTEGER NOT NULL
+    produto_id INTEGER NOT NULL,
+    quantidade INTEGER DEFAULT 1
 );
 CREATE TABLE IF NOT EXISTS entregas(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -127,7 +130,8 @@ CREATE TABLE IF NOT EXISTS entregas(
     entrega_realizada TIMESTAMP,
     status_id INTEGER NOT NULL,
     endereco_id INTEGER NOT NULL,
-    pedido_id INTEGER NOT NULL
+    pedido_id INTEGER NOT NULL,
+    cod_rastreio VARCHAR(45)
 );
 #<-- Referências a outras tabelas
 ALTER TABLE pessoa_fisica
@@ -154,7 +158,7 @@ ALTER TABLE estoque_produto
     ADD CONSTRAINT FK_estoqueProduto_produtos
         FOREIGN KEY (produto_id) REFERENCES produtos(id),
     ADD CONSTRAINT FK_estoqueProduto_categorias 
-        FOREIGN KEY (categoria_id) REFERENCES categorias(id);
+        FOREIGN KEY (estoque_id) REFERENCES estoque(id);
 
 ALTER TABLE vendedor_produto
     ADD CONSTRAINT FK_vendedorProduto_produtos
