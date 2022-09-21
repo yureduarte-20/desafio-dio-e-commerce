@@ -109,6 +109,10 @@ START TRANSACTION;
     INSERT INTO  pedidos_produtos(pedido_id, produto_id) VALUES( 3 , 4 );
     INSERT INTO  pedidos_produtos(pedido_id, produto_id) VALUES( 3 , 8 );
 
+    INSERT INTO pedidos(id, cliente_id, pagamento_id) VALUES(4, 4,4);
+    INSERT INTO  pedidos_produtos(pedido_id, produto_id) VALUES( 3 , 9 );
+    INSERT INTO  pedidos_produtos(pedido_id, produto_id) VALUES( 3 , 1 );
+
     INSERT INTO entregas(entrega_prevista, endereco_id, pedido_id, status_id, entrega_realizada, cod_rastreio) VALUES('2020-01-10', 1, 1,3,'2020-01-10 15:14:07', 'BR44574425F');
     INSERT INTO entregas(entrega_prevista, endereco_id, pedido_id, status_id, cod_rastreio) VALUES('2020-01-10', 2, 2, 2, 'BR44575ZF');
     INSERT INTO entregas(entrega_prevista, endereco_id, pedido_id, status_id, cod_rastreio) VALUES('2020-01-10', 4, 3, 1, 'BR44574425F');
