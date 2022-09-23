@@ -71,6 +71,7 @@ START TRANSACTION;
     INSERT INTO produtos(id, nome, valor, categoria_id) VALUES (7,'Batom', 2.0, 5);
     INSERT INTO produtos(id, nome, valor, categoria_id) VALUES (8,'Creme', 125.0, 5);
     INSERT INTO produtos(id, nome, valor, categoria_id) VALUES (9,'Colchão', 600.0, 3);
+    INSERT INTO produtos(id, nome, valor) VALUES (10,'Colchão', 600.5);
 
     #Estoque
     INSERT INTO estoque_produto(id, produto_id, estoque_id, quantidade) VALUES (1,1, 1, 3);
